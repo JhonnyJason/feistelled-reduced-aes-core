@@ -1,4 +1,3 @@
-/*! MIT License. Copyright 2015-2018 Richard Moore <me@ricmoo.com>. See LICENSE.txt. */
 // Round constant words
 var rcon = [0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36, 0x6c, 0xd8, 0xab, 0x4d, 0x9a, 0x2f, 0x5e, 0xbc, 0x63, 0xc6, 0x97, 0x35, 0x6a, 0xd4, 0xb3, 0x7d, 0xfa, 0xef, 0xc5, 0x91];
 
@@ -12,77 +11,56 @@ var T2 = [0xa5c66363, 0x84f87c7c, 0x99ee7777, 0x8df67b7b, 0x0dfff2f2, 0xbdd66b6b
 var T3 = [0x63a5c663, 0x7c84f87c, 0x7799ee77, 0x7b8df67b, 0xf20dfff2, 0x6bbdd66b, 0x6fb1de6f, 0xc55491c5, 0x30506030, 0x01030201, 0x67a9ce67, 0x2b7d562b, 0xfe19e7fe, 0xd762b5d7, 0xabe64dab, 0x769aec76, 0xca458fca, 0x829d1f82, 0xc94089c9, 0x7d87fa7d, 0xfa15effa, 0x59ebb259, 0x47c98e47, 0xf00bfbf0, 0xadec41ad, 0xd467b3d4, 0xa2fd5fa2, 0xafea45af, 0x9cbf239c, 0xa4f753a4, 0x7296e472, 0xc05b9bc0, 0xb7c275b7, 0xfd1ce1fd, 0x93ae3d93, 0x266a4c26, 0x365a6c36, 0x3f417e3f, 0xf702f5f7, 0xcc4f83cc, 0x345c6834, 0xa5f451a5, 0xe534d1e5, 0xf108f9f1, 0x7193e271, 0xd873abd8, 0x31536231, 0x153f2a15, 0x040c0804, 0xc75295c7, 0x23654623, 0xc35e9dc3, 0x18283018, 0x96a13796, 0x050f0a05, 0x9ab52f9a, 0x07090e07, 0x12362412, 0x809b1b80, 0xe23ddfe2, 0xeb26cdeb, 0x27694e27, 0xb2cd7fb2, 0x759fea75, 0x091b1209, 0x839e1d83, 0x2c74582c, 0x1a2e341a, 0x1b2d361b, 0x6eb2dc6e, 0x5aeeb45a, 0xa0fb5ba0, 0x52f6a452, 0x3b4d763b, 0xd661b7d6, 0xb3ce7db3, 0x297b5229, 0xe33edde3, 0x2f715e2f, 0x84971384, 0x53f5a653, 0xd168b9d1, 0x00000000, 0xed2cc1ed, 0x20604020, 0xfc1fe3fc, 0xb1c879b1, 0x5bedb65b, 0x6abed46a, 0xcb468dcb, 0xbed967be, 0x394b7239, 0x4ade944a, 0x4cd4984c, 0x58e8b058, 0xcf4a85cf, 0xd06bbbd0, 0xef2ac5ef, 0xaae54faa, 0xfb16edfb, 0x43c58643, 0x4dd79a4d, 0x33556633, 0x85941185, 0x45cf8a45, 0xf910e9f9, 0x02060402, 0x7f81fe7f, 0x50f0a050, 0x3c44783c, 0x9fba259f, 0xa8e34ba8, 0x51f3a251, 0xa3fe5da3, 0x40c08040, 0x8f8a058f, 0x92ad3f92, 0x9dbc219d, 0x38487038, 0xf504f1f5, 0xbcdf63bc, 0xb6c177b6, 0xda75afda, 0x21634221, 0x10302010, 0xff1ae5ff, 0xf30efdf3, 0xd26dbfd2, 0xcd4c81cd, 0x0c14180c, 0x13352613, 0xec2fc3ec, 0x5fe1be5f, 0x97a23597, 0x44cc8844, 0x17392e17, 0xc45793c4, 0xa7f255a7, 0x7e82fc7e, 0x3d477a3d, 0x64acc864, 0x5de7ba5d, 0x192b3219, 0x7395e673, 0x60a0c060, 0x81981981, 0x4fd19e4f, 0xdc7fa3dc, 0x22664422, 0x2a7e542a, 0x90ab3b90, 0x88830b88, 0x46ca8c46, 0xee29c7ee, 0xb8d36bb8, 0x143c2814, 0xde79a7de, 0x5ee2bc5e, 0x0b1d160b, 0xdb76addb, 0xe03bdbe0, 0x32566432, 0x3a4e743a, 0x0a1e140a, 0x49db9249, 0x060a0c06, 0x246c4824, 0x5ce4b85c, 0xc25d9fc2, 0xd36ebdd3, 0xacef43ac, 0x62a6c462, 0x91a83991, 0x95a43195, 0xe437d3e4, 0x798bf279, 0xe732d5e7, 0xc8438bc8, 0x37596e37, 0x6db7da6d, 0x8d8c018d, 0xd564b1d5, 0x4ed29c4e, 0xa9e049a9, 0x6cb4d86c, 0x56faac56, 0xf407f3f4, 0xea25cfea, 0x65afca65, 0x7a8ef47a, 0xaee947ae, 0x08181008, 0xbad56fba, 0x7888f078, 0x256f4a25, 0x2e725c2e, 0x1c24381c, 0xa6f157a6, 0xb4c773b4, 0xc65197c6, 0xe823cbe8, 0xdd7ca1dd, 0x749ce874, 0x1f213e1f, 0x4bdd964b, 0xbddc61bd, 0x8b860d8b, 0x8a850f8a, 0x7090e070, 0x3e427c3e, 0xb5c471b5, 0x66aacc66, 0x48d89048, 0x03050603, 0xf601f7f6, 0x0e121c0e, 0x61a3c261, 0x355f6a35, 0x57f9ae57, 0xb9d069b9, 0x86911786, 0xc15899c1, 0x1d273a1d, 0x9eb9279e, 0xe138d9e1, 0xf813ebf8, 0x98b32b98, 0x11332211, 0x69bbd269, 0xd970a9d9, 0x8e89078e, 0x94a73394, 0x9bb62d9b, 0x1e223c1e, 0x87921587, 0xe920c9e9, 0xce4987ce, 0x55ffaa55, 0x28785028, 0xdf7aa5df, 0x8c8f038c, 0xa1f859a1, 0x89800989, 0x0d171a0d, 0xbfda65bf, 0xe631d7e6, 0x42c68442, 0x68b8d068, 0x41c38241, 0x99b02999, 0x2d775a2d, 0x0f111e0f, 0xb0cb7bb0, 0x54fca854, 0xbbd66dbb, 0x163a2c16];
 var T4 = [0x6363a5c6, 0x7c7c84f8, 0x777799ee, 0x7b7b8df6, 0xf2f20dff, 0x6b6bbdd6, 0x6f6fb1de, 0xc5c55491, 0x30305060, 0x01010302, 0x6767a9ce, 0x2b2b7d56, 0xfefe19e7, 0xd7d762b5, 0xababe64d, 0x76769aec, 0xcaca458f, 0x82829d1f, 0xc9c94089, 0x7d7d87fa, 0xfafa15ef, 0x5959ebb2, 0x4747c98e, 0xf0f00bfb, 0xadadec41, 0xd4d467b3, 0xa2a2fd5f, 0xafafea45, 0x9c9cbf23, 0xa4a4f753, 0x727296e4, 0xc0c05b9b, 0xb7b7c275, 0xfdfd1ce1, 0x9393ae3d, 0x26266a4c, 0x36365a6c, 0x3f3f417e, 0xf7f702f5, 0xcccc4f83, 0x34345c68, 0xa5a5f451, 0xe5e534d1, 0xf1f108f9, 0x717193e2, 0xd8d873ab, 0x31315362, 0x15153f2a, 0x04040c08, 0xc7c75295, 0x23236546, 0xc3c35e9d, 0x18182830, 0x9696a137, 0x05050f0a, 0x9a9ab52f, 0x0707090e, 0x12123624, 0x80809b1b, 0xe2e23ddf, 0xebeb26cd, 0x2727694e, 0xb2b2cd7f, 0x75759fea, 0x09091b12, 0x83839e1d, 0x2c2c7458, 0x1a1a2e34, 0x1b1b2d36, 0x6e6eb2dc, 0x5a5aeeb4, 0xa0a0fb5b, 0x5252f6a4, 0x3b3b4d76, 0xd6d661b7, 0xb3b3ce7d, 0x29297b52, 0xe3e33edd, 0x2f2f715e, 0x84849713, 0x5353f5a6, 0xd1d168b9, 0x00000000, 0xeded2cc1, 0x20206040, 0xfcfc1fe3, 0xb1b1c879, 0x5b5bedb6, 0x6a6abed4, 0xcbcb468d, 0xbebed967, 0x39394b72, 0x4a4ade94, 0x4c4cd498, 0x5858e8b0, 0xcfcf4a85, 0xd0d06bbb, 0xefef2ac5, 0xaaaae54f, 0xfbfb16ed, 0x4343c586, 0x4d4dd79a, 0x33335566, 0x85859411, 0x4545cf8a, 0xf9f910e9, 0x02020604, 0x7f7f81fe, 0x5050f0a0, 0x3c3c4478, 0x9f9fba25, 0xa8a8e34b, 0x5151f3a2, 0xa3a3fe5d, 0x4040c080, 0x8f8f8a05, 0x9292ad3f, 0x9d9dbc21, 0x38384870, 0xf5f504f1, 0xbcbcdf63, 0xb6b6c177, 0xdada75af, 0x21216342, 0x10103020, 0xffff1ae5, 0xf3f30efd, 0xd2d26dbf, 0xcdcd4c81, 0x0c0c1418, 0x13133526, 0xecec2fc3, 0x5f5fe1be, 0x9797a235, 0x4444cc88, 0x1717392e, 0xc4c45793, 0xa7a7f255, 0x7e7e82fc, 0x3d3d477a, 0x6464acc8, 0x5d5de7ba, 0x19192b32, 0x737395e6, 0x6060a0c0, 0x81819819, 0x4f4fd19e, 0xdcdc7fa3, 0x22226644, 0x2a2a7e54, 0x9090ab3b, 0x8888830b, 0x4646ca8c, 0xeeee29c7, 0xb8b8d36b, 0x14143c28, 0xdede79a7, 0x5e5ee2bc, 0x0b0b1d16, 0xdbdb76ad, 0xe0e03bdb, 0x32325664, 0x3a3a4e74, 0x0a0a1e14, 0x4949db92, 0x06060a0c, 0x24246c48, 0x5c5ce4b8, 0xc2c25d9f, 0xd3d36ebd, 0xacacef43, 0x6262a6c4, 0x9191a839, 0x9595a431, 0xe4e437d3, 0x79798bf2, 0xe7e732d5, 0xc8c8438b, 0x3737596e, 0x6d6db7da, 0x8d8d8c01, 0xd5d564b1, 0x4e4ed29c, 0xa9a9e049, 0x6c6cb4d8, 0x5656faac, 0xf4f407f3, 0xeaea25cf, 0x6565afca, 0x7a7a8ef4, 0xaeaee947, 0x08081810, 0xbabad56f, 0x787888f0, 0x25256f4a, 0x2e2e725c, 0x1c1c2438, 0xa6a6f157, 0xb4b4c773, 0xc6c65197, 0xe8e823cb, 0xdddd7ca1, 0x74749ce8, 0x1f1f213e, 0x4b4bdd96, 0xbdbddc61, 0x8b8b860d, 0x8a8a850f, 0x707090e0, 0x3e3e427c, 0xb5b5c471, 0x6666aacc, 0x4848d890, 0x03030506, 0xf6f601f7, 0x0e0e121c, 0x6161a3c2, 0x35355f6a, 0x5757f9ae, 0xb9b9d069, 0x86869117, 0xc1c15899, 0x1d1d273a, 0x9e9eb927, 0xe1e138d9, 0xf8f813eb, 0x9898b32b, 0x11113322, 0x6969bbd2, 0xd9d970a9, 0x8e8e8907, 0x9494a733, 0x9b9bb62d, 0x1e1e223c, 0x87879215, 0xe9e920c9, 0xcece4987, 0x5555ffaa, 0x28287850, 0xdfdf7aa5, 0x8c8c8f03, 0xa1a1f859, 0x89898009, 0x0d0d171a, 0xbfbfda65, 0xe6e631d7, 0x4242c684, 0x6868b8d0, 0x4141c382, 0x9999b029, 0x2d2d775a, 0x0f0f111e, 0xb0b0cb7b, 0x5454fca8, 0xbbbbd66d, 0x16163a2c];
 
-var r, a, a1, a2, a3, a4, t, t8, t32, tt, i, ke, l8, l32, r8, r32;
+var a1, a2, a3, a4, ke, l8, l32, r8, r32;
 
-export class AESEngine {
+export class FRAESC {
+
     constructor(fullKey) {
-        if (fullKey.length != 64) {
-            throw new Error('invalid key size fullKey must be 64 bytes)');
+
+        if (fullKey instanceof Uint8Array) {
+            throw new Error('Invalid Key type - fullKe must be Uint8Array!')
         }
+        if (fullKey.length != 64) {
+            throw new Error('Invalid key size fullKey must be 64 bytes)');
+        }
+
         this.key = fullKey.slice(0, 32)
         this.keyUint32 = new Uint32Array(this.key.buffer)
-        this.iv1 = fullKey.slice(32, 48)
-        this.iv1_32 = new Uint32Array(this.iv1.buffer)
-        this.iv132 = new Uint32Array(4)
-        
-        this.iv132[0] = this.iv1_32[0]
-        this.iv132[1] = this.iv1_32[1]
-        this.iv132[2] = this.iv1_32[2]
-        this.iv132[3] = this.iv1_32[3]
-        // this.iv2 = fullKey.slice(48, 64)
         
         this.l0 = fullKey.slice(32, 48)
         this.l0_32 = new Uint32Array(this.l0.buffer)
         this.r0 = fullKey.slice(48, 64)
         this.r0_32 = new Uint32Array(this.r0.buffer)
 
-
-        this.p = new Uint8Array(16)
-        this.p_32 = new Uint32Array(this.p.buffer)
-
-        this.temp = new Uint8Array(16)
-        this.temp_32 = new Uint32Array(this.temp.buffer)
-        this.temp2 = new Uint8Array(16)
-        this.temp2_32 = new Uint32Array(this.temp2.buffer)
-
-        this.temp8 = new Uint8Array(16)
-        this.temp8_2 = new Uint8Array(16)
-        this.temp8_3 = new Uint8Array(16)
-
-        this.temp32 = new Uint32Array(4)
-        this.temp32_2 = new Uint32Array(4)
-        this.temp32_3 = new Uint32Array(4)
-
+        this.result = new Uint8Array(32)
+        
         this._KeL8 = new Uint8Array(16)
-        // this.rounds = 8
         this.rounds = 14
-        this.prepare()
-    }
-
-    prepare() {
+        
         // encryption round keys
         this._Ke = [];
-    
+
         for (var i = 0; i <= this.rounds; i++) {
             this._Ke.push([0, 0, 0, 0]);
         }
-    
+
         var roundKeyCount = (this.rounds + 1) * 4;
         var KC = this.key.length / 4;
-    
+
         // convert the key into ints
         var tk = this.keyUint32.slice()
-    
+
         // copy values into round key arrays
         var index;
         for (var i = 0; i < KC; i++) {
             index = i >> 2;
             this._Ke[index][i % 4] = tk[i];
         }
-    
+
         // key expansion (fips-197 section 5.2)
         var rconpointer = 0;
         var t = KC, tt;
+
         while (t < roundKeyCount) {
             tt = tk[KC - 1];
             tk[0] ^= ((S[(tt >> 16) & 0xFF] << 24) ^
@@ -91,22 +69,22 @@ export class AESEngine {
                         S[(tt >> 24) & 0xFF]        ^
                         (rcon[rconpointer] << 24));
             rconpointer += 1;
-    
-    
+
+
             for (var i = 1; i < (KC / 2); i++) {
                 tk[i] ^= tk[i - 1];
             }
             tt = tk[(KC / 2) - 1];
-    
+
             tk[KC / 2] ^= (S[ tt        & 0xFF]        ^
                             (S[(tt >>  8) & 0xFF] <<  8) ^
                             (S[(tt >> 16) & 0xFF] << 16) ^
                             (S[(tt >> 24) & 0xFF] << 24));
-    
+
             for (var i = (KC / 2) + 1; i < KC; i++) {
                 tk[i] ^= tk[i - 1];
             }
-    
+
             // copy values into round key arrays
             var i = 0, r, c;
             while (i < KC && t < roundKeyCount) {
@@ -116,6 +94,7 @@ export class AESEngine {
                 t++;
             }
         }
+
         this._KeL8[0] = (this._Ke[this.rounds][0] >> 24) & 0xff
         this._KeL8[1] = (this._Ke[this.rounds][0] >> 16) & 0xff
         this._KeL8[2] = (this._Ke[this.rounds][0] >> 8) & 0xff
@@ -135,305 +114,10 @@ export class AESEngine {
         this._KeL8[13] = (this._Ke[this.rounds][3] >> 16) & 0xff
         this._KeL8[14] = (this._Ke[this.rounds][3] >> 8) & 0xff
         this._KeL8[15] = this._Ke[this.rounds][3] & 0xff
+
     }
 
-    encrypt(counter, result) {
-        a = this.temp32
-        // a = this.temp_32
-        a[0] = 0
-        a[1] = 0
-        a[2] = 0
-        a[3] = 0
-
-        t = this.temp32_2
-        // t = this.temp2_32
-        // convert p to (ints ^ key)
-        // t[0] = ((p[0] << 24) | (p[1] << 16) | (p[2] << 8) | p[3]) ^ this._Ke[0][0]
-        // t[1] = ((p[4] << 24) | (p[5] << 16) | (p[6] << 8) | p[7] ) ^ this._Ke[0][1]
-        // t[2] = ((p[8] << 24) | (p[9] << 16) | (p[10] << 8) | p[11]) ^ this._Ke[0][2]
-        // t[3] = ((p[12] << 24) | (p[13] << 16) | (p[14] << 8) | p[15]) ^ this._Ke[0][3]
-        t[0] = this.iv132[0] ^ this._Ke[0][0]
-        t[1] = this.iv132[1] ^ this._Ke[0][1]
-        t[2] = this.iv132[2] ^ this._Ke[0][2]
-        t[3] = this.iv132[3] ^ this._Ke[0][3] ^ counter
-                
-        // apply round transforms
-        for (r = 1; r < this.rounds; r++) {
-
-            a[0] = (T1[(t[0] >> 24) & 0xff] ^
-                    T2[(t[1] >> 16) & 0xff] ^
-                    T3[(t[2] >>  8) & 0xff] ^
-                    T4[ t[3]        & 0xff] ^
-                    this._Ke[r][0]);
-            a[1] = (T1[(t[1] >> 24) & 0xff] ^
-                    T2[(t[2] >> 16) & 0xff] ^
-                    T3[(t[3] >>  8) & 0xff] ^
-                    T4[ t[0]        & 0xff] ^
-                    this._Ke[r][1]);
-            a[2] = (T1[(t[2] >> 24) & 0xff] ^
-                    T2[(t[3] >> 16) & 0xff] ^
-                    T3[(t[0] >>  8) & 0xff] ^
-                    T4[ t[1]        & 0xff] ^
-                    this._Ke[r][2]);
-            a[3] = (T1[(t[3] >> 24) & 0xff] ^
-                    T2[(t[0] >> 16) & 0xff] ^
-                    T3[(t[1] >>  8) & 0xff] ^
-                    T4[ t[2]        & 0xff] ^
-                    this._Ke[r][3]);
-
-            t[0] = a[0]
-            t[1] = a[1]
-            t[2] = a[2]
-            t[3] = a[3]
-        }
-    
-        tt = this._Ke[this.rounds][0];
-        result[0] = (S[(t[0] >> 24) & 0xff] ^ (tt >> 24)) & 0xff;
-        result[1] = (S[(t[1] >> 16) & 0xff] ^ (tt >> 16)) & 0xff;
-        result[2] = (S[(t[2] >>  8) & 0xff] ^ (tt >>  8)) & 0xff;
-        result[3] = (S[ t[2]        & 0xff] ^  tt       ) & 0xff;
-
-        tt = this._Ke[this.rounds][1];
-        result[4] = (S[(t[1] >> 24) & 0xff] ^ (tt >> 24)) & 0xff;
-        result[5] = (S[(t[2] >> 16) & 0xff] ^ (tt >> 16)) & 0xff;
-        result[6] = (S[(t[3] >>  8) & 0xff] ^ (tt >>  8)) & 0xff;
-        result[6] = (S[ t[0]        & 0xff] ^  tt       ) & 0xff;
-
-        tt = this._Ke[this.rounds][2];
-        result[8]  = (S[(t[2] >> 24) & 0xff] ^ (tt >> 24)) & 0xff;
-        result[9]  = (S[(t[3] >> 16) & 0xff] ^ (tt >> 16)) & 0xff;
-        result[10] = (S[(t[0] >>  8) & 0xff] ^ (tt >>  8)) & 0xff;
-        result[11] = (S[ t[1]        & 0xff] ^  tt       ) & 0xff;
-
-        tt = this._Ke[this.rounds][3];
-        result[12] = (S[(t[3] >> 24) & 0xff] ^ (tt >> 24)) & 0xff;
-        result[13] = (S[(t[0] >> 16) & 0xff] ^ (tt >> 16)) & 0xff;
-        result[14] = (S[(t[1] >>  8) & 0xff] ^ (tt >>  8)) & 0xff;
-        result[15] = (S[ t[2]        & 0xff] ^  tt       ) & 0xff;
-    
-        return result;
-    }    
-
-    ctrDigestOld(counter) {
-        var result = new Uint8Array(16)
-
-        t = this.temp32_2
-        // t = this.temp2_32
-        // convert p to (ints ^ key)
-        // t[0] = ((p[0] << 24) | (p[1] << 16) | (p[2] << 8) | p[3]) ^ this._Ke[0][0]
-        // t[1] = ((p[4] << 24) | (p[5] << 16) | (p[6] << 8) | p[7] ) ^ this._Ke[0][1]
-        // t[2] = ((p[8] << 24) | (p[9] << 16) | (p[10] << 8) | p[11]) ^ this._Ke[0][2]
-        // t[3] = ((p[12] << 24) | (p[13] << 16) | (p[14] << 8) | p[15]) ^ this._Ke[0][3]
-        t[0] = this.iv132[0] ^ this._Ke[0][0]
-        t[1] = this.iv132[1] ^ this._Ke[0][1]
-        t[2] = this.iv132[2] ^ this._Ke[0][2]
-        t[3] = this.iv132[3] ^ this._Ke[0][3] ^ counter
-                
-        // apply round transforms
-        for (r = 1; r < this.rounds; r++) {
-
-            a1 = (T1[(t[0] >> 24) & 0xff] ^
-                    T2[(t[1] >> 16) & 0xff] ^
-                    T3[(t[2] >>  8) & 0xff] ^
-                    T4[ t[3]        & 0xff] ^
-                    this._Ke[r][0]);
-            a2 = (T1[(t[1] >> 24) & 0xff] ^
-                    T2[(t[2] >> 16) & 0xff] ^
-                    T3[(t[3] >>  8) & 0xff] ^
-                    T4[ t[0]        & 0xff] ^
-                    this._Ke[r][1]);
-            a3 = (T1[(t[2] >> 24) & 0xff] ^
-                    T2[(t[3] >> 16) & 0xff] ^
-                    T3[(t[0] >>  8) & 0xff] ^
-                    T4[ t[1]        & 0xff] ^
-                    this._Ke[r][2]);
-            a4 = (T1[(t[3] >> 24) & 0xff] ^
-                    T2[(t[0] >> 16) & 0xff] ^
-                    T3[(t[1] >>  8) & 0xff] ^
-                    T4[ t[2]        & 0xff] ^
-                    this._Ke[r][3]);
-
-            t[0] = a1
-            t[1] = a2
-            t[2] = a3
-            t[3] = a4
-        }
-    
-        result[0] = S[(t[0] >> 24) & 0xff] ^ this._KeL8[0];
-        result[1] = S[(t[1] >> 16) & 0xff] ^ this._KeL8[1];
-        result[2] = S[(t[2] >>  8) & 0xff] ^ this._KeL8[2];
-        result[3] = S[ t[2]        & 0xff] ^ this._KeL8[3];
-
-        result[4] = S[(t[1] >> 24) & 0xff] ^ this._KeL8[4];
-        result[5] = S[(t[2] >> 16) & 0xff] ^ this._KeL8[5];
-        result[6] = S[(t[3] >>  8) & 0xff] ^ this._KeL8[6];
-        result[7] = S[ t[0]        & 0xff] ^ this._KeL8[7];
-
-        result[8]  = S[(t[2] >> 24) & 0xff] ^ this._KeL8[8];
-        result[9]  = S[(t[3] >> 16) & 0xff] ^ this._KeL8[9];
-        result[10] = S[(t[0] >>  8) & 0xff] ^ this._KeL8[10];
-        result[11] = S[ t[1]        & 0xff] ^ this._KeL8[11];
-
-        result[12] = S[(t[3] >> 24) & 0xff] ^ this._KeL8[12];
-        result[13] = S[(t[0] >> 16) & 0xff] ^ this._KeL8[13];
-        result[14] = S[(t[1] >>  8) & 0xff] ^ this._KeL8[14];
-        result[15] = S[ t[2]        & 0xff] ^ this._KeL8[15];
-    
-        return result;    
-    }
-
-    ctrDigest(counter) {
-        var result = new Uint8Array(16)    
-        ke = this._Ke[0]
-
-        t32 = this.temp2_32
-        t8 = this.temp2
-
-        // convert p to (ints ^ key)
-        t32[0] = this.iv132[0] ^ ke[0]
-        t32[1] = this.iv132[1] ^ ke[1]
-        t32[2] = this.iv132[2] ^ ke[2]
-        t32[3] = this.iv132[3] ^ ke[3] ^ counter
-                
-        // apply round transforms
-        for (r = 1; r < this.rounds; r++) {
-            ke = this._Ke[r]
-
-            a1 = T1[t8[0]] ^ T2[t8[5]] ^ T3[t8[10]] ^ T4[t8[15]] ^ ke[0];
-            a2 = T1[t8[4]] ^ T2[t8[9]] ^ T3[t8[14]] ^ T4[t8[3]] ^ ke[1];
-            a3 = T1[t8[8]] ^ T2[t8[13]] ^ T3[t8[2]] ^ T4[t8[7]] ^ ke[2];
-            a4 = T1[t8[12]] ^ T2[t8[1]] ^ T3[t8[6]] ^ T4[t8[11]] ^ ke[3];
-
-            t32[0] = a1
-            t32[1] = a2
-            t32[2] = a3
-            t32[3] = a4
-        }
-    
-        result[0] = S[t8[0]]  ^ this._KeL8[0];
-        result[1] = S[t8[5]]  ^ this._KeL8[1];
-        result[2] = S[t8[10]] ^ this._KeL8[2];
-        result[3] = S[t8[15]] ^ this._KeL8[3];
-
-        result[4] = S[t8[4]]  ^ this._KeL8[4];
-        result[5] = S[t8[9]]  ^ this._KeL8[5];
-        result[6] = S[t8[14]] ^ this._KeL8[6];
-        result[7] = S[t8[3]]  ^ this._KeL8[7];
-
-        result[8]  = S[t8[8]]  ^ this._KeL8[8];
-        result[9]  = S[t8[13]] ^ this._KeL8[9];
-        result[10] = S[t8[2]]  ^ this._KeL8[10];
-        result[11] = S[t8[7]]  ^ this._KeL8[11];
-
-        result[12] = S[t8[12]] ^ this._KeL8[12];
-        result[13] = S[t8[1]]  ^ this._KeL8[13];
-        result[14] = S[t8[6]]  ^ this._KeL8[14];
-        result[15] = S[t8[11]] ^ this._KeL8[15];
-    
-        return result;
-    }
-
-    ctrDigest2(counter) {
-        var result = new Uint8Array(16)    
-        t8 = this.temp8
-        ke = this._Ke[0]
-
-        // convert p to (ints ^ key)
-        i = this.iv132[0] ^ ke[0]
-        t8[0] = (i >> 24) & 0xff
-        t8[1] = (i >> 16) & 0xff
-        t8[2] = (i >> 8) & 0xff
-        t8[3] = i & 0xff
-        
-        i = this.iv132[1] ^ ke[1]
-        t8[4] = (i >> 24) & 0xff
-        t8[5] = (i >> 16) & 0xff
-        t8[6] = (i >> 8) & 0xff
-        t8[7] = i & 0xff
-
-        i = this.iv132[2] ^ ke[2]
-        t8[8] = (i >> 24) & 0xff
-        t8[9] = (i >> 16) & 0xff
-        t8[10] = (i >> 8) & 0xff
-        t8[11] = i & 0xff
-
-        i = this.iv132[3] ^ ke[3] ^ counter
-        t8[12] = (i >> 24) & 0xff
-        t8[13] = (i >> 16) & 0xff
-        t8[14] = (i >> 8) & 0xff
-        t8[15] = i & 0xff
-                
-        // apply round transforms
-        for (r = 1; r < this.rounds; r++) {
-            ke = this._Ke[r]
-
-            a1 = T1[t8[0]]  ^ 
-                   T2[t8[5]]  ^ 
-                   T3[t8[10]] ^ 
-                   T4[t8[15]] ^ 
-                   ke[0];
-            a2 = T1[t8[4]]  ^
-                   T2[t8[9]]  ^
-                   T3[t8[14]] ^
-                   T4[t8[3]]  ^
-                   ke[1];
-            a3 = T1[t8[8]]  ^
-                   T2[t8[13]] ^
-                   T3[t8[2]]  ^
-                   T4[t8[7]]  ^
-                   ke[2];
-            a4 = T1[t8[12]] ^
-                   T2[t8[1]]  ^
-                   T3[t8[6]]  ^
-                   T4[t8[11]] ^
-                   ke[3];
-
-            t8[0] = (a1 >> 24) & 0xff
-            t8[1] = (a1 >> 16) & 0xff
-            t8[2] = (a1 >> 8) & 0xff
-            t8[3] = a1 & 0xff
-            
-            t8[4] = (a2 >> 24) & 0xff
-            t8[5] = (a2 >> 16) & 0xff
-            t8[6] = (a2 >> 8) & 0xff
-            t8[7] = a2 & 0xff
-
-            t8[8] = (a3 >> 24) & 0xff
-            t8[9] = (a3 >> 16) & 0xff
-            t8[10] = (a3 >> 8) & 0xff
-            t8[11] = a3 & 0xff
-
-            t8[12] = (a4 >> 24) & 0xff
-            t8[13] = (a4 >> 16) & 0xff
-            t8[14] = (a4 >> 8) & 0xff
-            t8[15] = a4 & 0xff
-        }
-    
-        result[0] = S[t8[0]]  ^ this._KeL8[0];
-        result[1] = S[t8[5]]  ^ this._KeL8[1];
-        result[2] = S[t8[10]] ^ this._KeL8[2];
-        result[3] = S[t8[15]] ^ this._KeL8[3];
-
-        result[4] = S[t8[4]]  ^ this._KeL8[4];
-        result[5] = S[t8[9]]  ^ this._KeL8[5];
-        result[6] = S[t8[14]] ^ this._KeL8[6];
-        result[7] = S[t8[3]]  ^ this._KeL8[7];
-
-        result[8]  = S[t8[8]]  ^ this._KeL8[8];
-        result[9]  = S[t8[13]] ^ this._KeL8[9];
-        result[10] = S[t8[2]]  ^ this._KeL8[10];
-        result[11] = S[t8[7]]  ^ this._KeL8[11];
-
-        result[12] = S[t8[12]] ^ this._KeL8[12];
-        result[13] = S[t8[1]]  ^ this._KeL8[13];
-        result[14] = S[t8[6]]  ^ this._KeL8[14];
-        result[15] = S[t8[11]] ^ this._KeL8[15];
-    
-        return result;
-    }
-
-    feistelDigest(counter) {
-        var result = new Uint8Array(32)
+    generate(counter) {
 
         l32 = this.l0_32
         l8 = this.l0
@@ -537,112 +221,46 @@ export class AESEngine {
         l32[3] = a4
         
         //6: apply Substitutions
-        result[0] = S[l8[0]]  ^ this._KeL8[0];
-        result[1] = S[l8[5]]  ^ this._KeL8[1];
-        result[2] = S[l8[10]] ^ this._KeL8[2];
-        result[3] = S[l8[15]] ^ this._KeL8[3];
+        this.result[0] = S[l8[0]]  ^ this._KeL8[0];
+        this.result[1] = S[l8[5]]  ^ this._KeL8[1];
+        this.result[2] = S[l8[10]] ^ this._KeL8[2];
+        this.result[3] = S[l8[15]] ^ this._KeL8[3];
 
-        result[4] = S[l8[4]]  ^ this._KeL8[4];
-        result[5] = S[l8[9]]  ^ this._KeL8[5];
-        result[6] = S[l8[14]] ^ this._KeL8[6];
-        result[7] = S[l8[3]]  ^ this._KeL8[7];
+        this.result[4] = S[l8[4]]  ^ this._KeL8[4];
+        this.result[5] = S[l8[9]]  ^ this._KeL8[5];
+        this.result[6] = S[l8[14]] ^ this._KeL8[6];
+        this.result[7] = S[l8[3]]  ^ this._KeL8[7];
 
-        result[8]  = S[l8[8]]  ^ this._KeL8[8];
-        result[9]  = S[l8[13]] ^ this._KeL8[9];
-        result[10] = S[l8[2]]  ^ this._KeL8[10];
-        result[11] = S[l8[7]]  ^ this._KeL8[11];
+        this.result[8]  = S[l8[8]]  ^ this._KeL8[8];
+        this.result[9]  = S[l8[13]] ^ this._KeL8[9];
+        this.result[10] = S[l8[2]]  ^ this._KeL8[10];
+        this.result[11] = S[l8[7]]  ^ this._KeL8[11];
 
-        result[12] = S[l8[12]] ^ this._KeL8[12];
-        result[13] = S[l8[1]]  ^ this._KeL8[13];
-        result[14] = S[l8[6]]  ^ this._KeL8[14];
-        result[15] = S[l8[11]] ^ this._KeL8[15];
+        this.result[12] = S[l8[12]] ^ this._KeL8[12];
+        this.result[13] = S[l8[1]]  ^ this._KeL8[13];
+        this.result[14] = S[l8[6]]  ^ this._KeL8[14];
+        this.result[15] = S[l8[11]] ^ this._KeL8[15];
 
-        result[16] = S[r8[0]]  ^ this._KeL8[0];
-        result[17] = S[r8[5]]  ^ this._KeL8[1];
-        result[18] = S[r8[10]] ^ this._KeL8[2];
-        result[19] = S[r8[15]] ^ this._KeL8[3];
+        this.result[16] = S[r8[0]]  ^ this._KeL8[0];
+        this.result[17] = S[r8[5]]  ^ this._KeL8[1];
+        this.result[18] = S[r8[10]] ^ this._KeL8[2];
+        this.result[19] = S[r8[15]] ^ this._KeL8[3];
 
-        result[20] = S[r8[4]]  ^ this._KeL8[4];
-        result[21] = S[r8[9]]  ^ this._KeL8[5];
-        result[22] = S[r8[14]] ^ this._KeL8[6];
-        result[23] = S[r8[3]]  ^ this._KeL8[7];
+        this.result[20] = S[r8[4]]  ^ this._KeL8[4];
+        this.result[21] = S[r8[9]]  ^ this._KeL8[5];
+        this.result[22] = S[r8[14]] ^ this._KeL8[6];
+        this.result[23] = S[r8[3]]  ^ this._KeL8[7];
 
-        result[24] = S[r8[8]]  ^ this._KeL8[8];
-        result[25] = S[r8[13]] ^ this._KeL8[9];
-        result[26] = S[r8[2]]  ^ this._KeL8[10];
-        result[27] = S[r8[7]]  ^ this._KeL8[11];
+        this.result[24] = S[r8[8]]  ^ this._KeL8[8];
+        this.result[25] = S[r8[13]] ^ this._KeL8[9];
+        this.result[26] = S[r8[2]]  ^ this._KeL8[10];
+        this.result[27] = S[r8[7]]  ^ this._KeL8[11];
 
-        result[28] = S[r8[12]] ^ this._KeL8[12];
-        result[29] = S[r8[1]]  ^ this._KeL8[13];
-        result[30] = S[r8[6]]  ^ this._KeL8[14];
-        result[31] = S[r8[11]] ^ this._KeL8[15];
+        this.result[28] = S[r8[12]] ^ this._KeL8[12];
+        this.result[29] = S[r8[1]]  ^ this._KeL8[13];
+        this.result[30] = S[r8[6]]  ^ this._KeL8[14];
+        this.result[31] = S[r8[11]] ^ this._KeL8[15];
 
-        return result;
+        return this.result;
     }
 }
-
-// export class FeistelEngine {
-//     constructor() {
-//         if (fullKey.length != 64) {
-//             throw new Error('invalid key size fullKey must be 64 bytes)');
-//         }
-//         this.key = fullKey.slice(0, 32)
-//         this.key_32 = new Uint32Array(this.key.buffer)
-//         this.l0 = fullKey.slice(32, 48)
-//         this.l0_32 = new Uint32Array(this.l0.buffer)
-//         this.r0 = fullKey.slice(48, 64)
-//         this.r0_32 = new Uint32Array(this.r0.buffer)
-        
-//         this.temp = new Uint8Array(16)
-//         this.temp_32 = new Uint32Array(this.temp.buffer)
-//         this.temp2 = new Uint8Array(16)
-//         this.temp2_32 = new Uint32Array(this.temp2.buffer)
-//         this.temp3 = new Uint8Array(16)
-//         this.temp3_32 = new Uint32Array(this.temp3.buffer)
-//         this.rounds = 4 // said to be enough for strong pseudorandom permutation (Luby-Rackoff)
-//     }
-
-//     feistelDigest(counter) {
-//         var result = new Uint8Array(32)
-
-//         // do 3 feistel Rounds
-//         // in each feistel Round do 1 AES substitution round
-//         // l = 
-
-//         // a = this.temp32
-//         // a[0] = 0
-//         // a[1] = 0
-//         // a[2] = 0
-//         // a[3] = 0
-
-//         // t = this.temp32_2
-//         // // convert p to (ints ^ key)
-//         // t[0] = ((p[0] << 24) | (p[1] << 16) | (p[2] << 8) | p[3]) ^ this._Ke[0][0]
-//         // t[1] = ((p[4] << 24) | (p[5] << 16) | (p[6] << 8) | p[7] ) ^ this._Ke[0][1]
-//         // t[2] = ((p[8] << 24) | (p[9] << 16) | (p[10] << 8) | p[11]) ^ this._Ke[0][2]
-//         // t[3] = ((p[12] << 24) | (p[13] << 16) | (p[14] << 8) | p[15]) ^ this._Ke[0][3]
-
-
-//         // a[0] = (T1[(t[0] >> 24) & 0xff] ^
-//         //         T2[(t[1] >> 16) & 0xff] ^
-//         //         T3[(t[2] >>  8) & 0xff] ^
-//         //         T4[ t[3]        & 0xff] ^
-//         //         this._Ke[r][0]);
-//         // a[1] = (T1[(t[1] >> 24) & 0xff] ^
-//         //         T2[(t[2] >> 16) & 0xff] ^
-//         //         T3[(t[3] >>  8) & 0xff] ^
-//         //         T4[ t[0]        & 0xff] ^
-//         //         this._Ke[r][1]);
-//         // a[2] = (T1[(t[2] >> 24) & 0xff] ^
-//         //         T2[(t[3] >> 16) & 0xff] ^
-//         //         T3[(t[0] >>  8) & 0xff] ^
-//         //         T4[ t[1]        & 0xff] ^
-//         //         this._Ke[r][2]);
-//         // a[3] = (T1[(t[3] >> 24) & 0xff] ^
-//         //         T2[(t[0] >> 16) & 0xff] ^
-//         //         T3[(t[1] >>  8) & 0xff] ^
-//         //         T4[ t[2]        & 0xff] ^
-//         //         this._Ke[r][3]);
-
-//     }
-// }
