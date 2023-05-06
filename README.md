@@ -32,18 +32,18 @@ If you have an idea on how to analyse this implementation for these security pro
 ```coffee
 import { FRAESC } from "feistelled-reduced-aes-core"
 
-seedBytes = # ... a shared seed
+seedBytes = # ... a commonly known seed of 64 bytes
 
 fraesc = new FRAESC(seedBytes)
 
-console.log(freasc.generate())
+console.log(fraesc.generate())
 
 counter = 0
-console.log(freasc.generate(counter++))
-console.log(freasc.generate(counter++))
-console.log(freasc.generate(Date.now()))
+console.log(fraesc.generate(counter++))
+console.log(fraesc.generate(counter++))
+console.log(fraesc.generate(Date.now()))
 
-console.log(freasc.generate())
+console.log(fraesc.generate())
 
 ```
 

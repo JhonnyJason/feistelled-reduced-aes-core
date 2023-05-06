@@ -2,7 +2,7 @@
     "name": "feistelled-reduced-aes-core",
     "version": "0.0.1",
     "description": "An implementation of a 3 rounds of Feistel around AES 2-transformation 1-subtitution step. Supposed to be a pseudorandom permutation.",
-    "main": "index.js"
+    "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
